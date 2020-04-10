@@ -22,20 +22,20 @@ humans = [
 # Write a list comprehension that creates a list of names of everyone
 # whose name starts with 'D':
 print("Starts with D:")
-a = [idx for idx in humans if idx.name.startswith('D')]
+a = [idx.name for idx in humans if idx.name.startswith('D')]
 print(a)
 
 # Write a list comprehension that creates a list of names of everyone
 # whose name ends in "e".
 print("Ends with e:")
-b = [idx for idx in humans if idx.name.endswith('e')]
+b = [idx.name for idx in humans if idx.name.endswith('e')]
 print(b)
 
 # Write a list comprehension that creates a list of names of everyone
 # whose name starts with any letter between 'C' and 'G' inclusive.
 print("Starts between C and G, inclusive:")
 allowed = 'CDEFG'
-c = [idx for idx in humans if any(idx.name.startswith(x) for x in allowed)]
+c = [idx.name for idx in humans if any(idx.name.startswith(x) for x in allowed)]
 print(c)
 
 # Write a list comprehension that creates a list of all the ages plus 10.
@@ -43,8 +43,7 @@ print("Ages plus 10:")
 idx = 0
 d = []
 for idx in humans:
-    d.append(idx.age)
-d.append(10)
+    d.append(idx.age + 10)
 print(d)
 
 # Write a list comprehension that creates a list of strings which are the name
@@ -63,7 +62,7 @@ print("Names and ages between 27 and 32:")
 f = []
 idx = 0
 for idx in humans:
-    if idx.age in range(27,32):
+    if idx.age in range(28,33):
         f.append((idx.name, idx.age))
 print(f)
 
@@ -71,10 +70,7 @@ print(f)
 # list, except with all the names uppercase and the ages with 5 added to them.
 # The "humans" list should be unmodified.
 print("All names uppercase:")
-g = []
-idx = 0
-for idx in humans:
-    g.append(idx.name.upper())
+g = [Human(human.name.upper(), human.age + 5) for human in humans]
 print(g)
 
 # Write a list comprehension that contains the square root of all the ages.
@@ -83,5 +79,5 @@ import math
 h = []
 idx = 0
 for idx in humans:
-    h.append(idx.age)
-print(math.sqrt(sum(h)))
+    h.append(math.sqrt(idx.age))
+print(h)
